@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "description": "webapp for internal business inquiries ",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hardenberg/Itawa.git"

@@ -4,6 +4,10 @@ module.exports = {
     addInquiry: handleInquiry
 };
 
+/**
+ * Handles the inquiries
+ * @param model
+ */
 function handleInquiry(model) {
     const sendmail = require('sendmail')({
         silent: true,
