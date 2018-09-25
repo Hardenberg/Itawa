@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Itawa - Inquiry Webinterface</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <form>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inquiryFrom"></span>
+                    </div>
+                    <input type="text" class="form-control" id="inquiryFromText" placeholder="Your Name" aria-label="Your Name" aria-describedby="inquiryFrom">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="mailSubject"></span>
+                    </div>
+                    <input type="text" class="form-control" id="mailSubjectText" placeholder="Subject" aria-label="Subject" aria-describedby="mailSubject">
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="mailTypeSelect"></label>
+                </div>
+                <select class="custom-select" id="mailTypeSelect">
+                    <option selected value="quest">Question</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                </div>
+                <textarea class="form-control" aria-label="@" placeholder="Your Inquiry" id="mailText" rows="7"></textarea>
+            </div>
+            <br>
+            <div class="input-group">
+                <button class="btn btn-secondary btn-lg btn-block" id="BtnSend" type="button">Send</button>
+            </div>
+        </form>
+    </body>
+</html>
+<script>
+    let domain = "http://localhost:8080/api/\n";
+    $('#BtnSend').click(() => {
+        let mailText = $('#mailText').val();
+        let mailSubject = $('#mailSubjectText').val();
+        let mailTypeSelect = $('#mailTypeSelect').val();
+        let inquiryFromText = $('#inquiryFromText').val();
+
+        if (mailText.length < 1 || mailText === undefined){
+            alert('missing Text');
+            return;
+        }
+
+        if (mailSubject.length < 1 || mailSubject === undefined){
+            alert('missing Subject');
+            return;
+        }
+
+        if (mailTypeSelect.length < 1 || mailTypeSelect === undefined){
+            alert('missing Type');
+            return;
+        }
+
+        if (inquiryFromText.length < 1 || inquiryFromText === undefined){
+            alert('missing your Name');
+            return;
+        }
+
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: domain,
+            data: {
+                text: function () {
+                    return mailText;
+                },
+                subject: function () {
+                    return mailSubject;
+                },
+                type: function () {
+                    return mailTypeSelect;
+                },
+                owner: function () {
+                    return inquiryFromText;
+                },
+            }
+        });
+    })
+</script>

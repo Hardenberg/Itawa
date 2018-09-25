@@ -1,0 +1,29 @@
+{
+  "name": "itawa",
+  "version": "0.1.0",
+  "description": "webapp for internal business inquiries ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hardenberg/Itawa.git"
+  },
+  "keywords": [
+    "intenal",
+    "business",
+    "inquiries"
+  ],
+  "author": "Alrik Schnapke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hardenberg/Itawa/issues"
+  },
+  "homepage": "https://github.com/Hardenberg/Itawa#readme",
+  "devDependencies": {
+    "body-parser": "latest",
+    "express": "^4.16.3",
+    "sendmail": "^1.4.1"
+  }
+}
